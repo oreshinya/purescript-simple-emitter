@@ -6,6 +6,7 @@
     "bower:install": "bower install",
     "pulp:build": "pulp build",
     "pulp:psci": "pulp psci",
+    "pulp:test": "pulp test",
     "pulp:version": "pulp version",
     "pulp:publish": "pulp publish"
   },
