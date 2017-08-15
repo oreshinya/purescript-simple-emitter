@@ -5,7 +5,7 @@ import Prelude
 import Control.Monad.Eff (Eff)
 import Control.Monad.Eff.Console (CONSOLE, log)
 import Control.Monad.Eff.Ref (REF)
-import SimpleEmitter (emit, emitter, subscribe, unsubscribe)
+import SimpleEmitter (emit, createEmitter, subscribe, unsubscribe)
 
 
 
@@ -21,7 +21,7 @@ derive instance ordEvent :: Ord Event
 
 main :: forall e. Eff (console :: CONSOLE, ref :: REF | e) Unit
 main = do
-  e <- emitter
+  e <- createEmitter
   subscribe Create log1 e
   emit Create e
   log "======================"

@@ -1,6 +1,6 @@
 module SimpleEmitter
   ( Emitter
-  , emitter
+  , createEmitter
   , subscribe
   , unsubscribe
   , emit
@@ -19,8 +19,8 @@ newtype Emitter e k = Emitter (Ref (Map k (Eff e Unit)))
 
 
 
-emitter :: forall e k. Eff (ref :: REF | e) (Emitter (ref :: REF | e) k)
-emitter = map Emitter $ newRef empty
+createEmitter :: forall e k. Eff (ref :: REF | e) (Emitter (ref :: REF | e) k)
+createEmitter = map Emitter $ newRef empty
 
 
 
