@@ -2,9 +2,8 @@ module Test.Main where
 
 import Prelude
 
-import Control.Monad.Eff (Eff)
-import Control.Monad.Eff.Console (CONSOLE, log)
-import Control.Monad.Eff.Ref (REF)
+import Effect (Effect)
+import Effect.Console (log)
 import SimpleEmitter (emit, createEmitter, subscribe, unsubscribe)
 
 
@@ -19,7 +18,7 @@ derive instance ordEvent :: Ord Event
 
 
 
-main :: forall e. Eff (console :: CONSOLE, ref :: REF | e) Unit
+main :: Effect Unit
 main = do
   e <- createEmitter
   subscribe Create log1 e
@@ -43,15 +42,15 @@ main = do
 
 
 
-log1 :: forall e. Eff (console :: CONSOLE | e) Unit
+log1 :: Effect Unit
 log1 = log "log 1"
 
 
 
-log2 :: forall e. Eff (console :: CONSOLE | e) Unit
+log2 :: Effect Unit
 log2 = log "log 2"
 
 
 
-log3 :: forall e. Eff (console :: CONSOLE | e) Unit
+log3 :: Effect Unit
 log3 = log "log 3"

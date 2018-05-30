@@ -7,40 +7,41 @@ module SimpleEmitter
   ) where
 
 import Prelude
-import Control.Monad.Eff (Eff)
-import Control.Monad.Eff.Ref (REF, Ref, readRef, newRef, modifyRef)
+
+import Effect (Effect)
+import Effect.Ref (Ref, read, new, modify_)
 import Data.Foldable (sequence_)
 import Data.Map (Map, empty, insert, lookup, delete)
 import Data.Maybe (Maybe(..))
 
 
 
-newtype Emitter e k = Emitter (Ref (Map k (Eff e Unit)))
+newtype Emitter k = Emitter (Ref (Map k (Effect Unit)))
 
 
 
-createEmitter :: forall e k. Eff (ref :: REF | e) (Emitter (ref :: REF | e) k)
-createEmitter = map Emitter $ newRef empty
+createEmitter :: forall k. Effect (Emitter k)
+createEmitter = Emitter <$> new empty
 
 
 
-subscribe :: forall e k. Ord k => k -> Eff (ref :: REF | e) Unit -> Emitter (ref :: REF | e) k -> Eff (ref :: REF | e) Unit
+subscribe :: forall k. Ord k => k -> Effect Unit -> Emitter k -> Effect Unit
 subscribe k f (Emitter ref) = do
-  listeners <- readRef ref
-  case lookup k listeners of
-    Nothing -> modifyRef ref $ insert k f
-    Just f' -> modifyRef ref $ insert k $ sequence_ [ f', f ]
+  listeners <- read ref
+  flip modify_ ref case lookup k listeners of
+    Nothing -> insert k f
+    Just f' -> insert k $ sequence_ [ f', f ]
 
 
 
-unsubscribe :: forall e k. Ord k => k -> Emitter (ref :: REF | e) k -> Eff (ref :: REF | e) Unit
-unsubscribe k (Emitter ref) = modifyRef ref $ delete k
+unsubscribe :: forall k. Ord k => k -> Emitter k -> Effect Unit
+unsubscribe k (Emitter ref) = flip modify_ ref $ delete k
 
 
 
-emit :: forall e k. Ord k => k -> Emitter (ref :: REF | e) k -> Eff (ref :: REF | e) Unit
+emit :: forall k. Ord k => k -> Emitter k -> Effect Unit
 emit k (Emitter ref) = do
-  listeners <- readRef ref
+  listeners <- read ref
   case lookup k listeners of
     Nothing -> pure unit
     Just f -> f
