@@ -6,8 +6,16 @@ PureScript simple event emitter.
 
 ## Installation
 
+### Bower
+
 ```
-bower install purescript-simple-emitter
+$ bower install purescript-simple-emitter
+```
+
+### Spago
+
+```
+$ spago install simple-emitter
 ```
 
 ## Documentation
