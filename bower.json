@@ -24,7 +24,6 @@
     "output"
   ],
   "devDependencies": {
-    "purescript-psci-support": "^4.0.0",
     "purescript-console": "^4.2.0"
   },
   "dependencies": {
