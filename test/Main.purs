@@ -6,8 +6,6 @@ import Effect (Effect)
 import Effect.Console (log)
 import SimpleEmitter (emit, createEmitter, subscribe, unsubscribe)
 
-
-
 data Event
   = Create
   | Update
@@ -15,8 +13,6 @@ data Event
 
 derive instance eqEvent :: Eq Event
 derive instance ordEvent :: Ord Event
-
-
 
 main :: Effect Unit
 main = do
@@ -40,17 +36,11 @@ main = do
   emit Update e
   log "======================"
 
-
-
 log1 :: Effect Unit
 log1 = log "log 1"
 
-
-
 log2 :: Effect Unit
 log2 = log "log 2"
-
-
 
 log3 :: Effect Unit
 log3 = log "log 3"
