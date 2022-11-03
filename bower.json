@@ -24,10 +24,10 @@
     "output"
   ],
   "devDependencies": {
-    "purescript-console": "^5.0.0"
+    "purescript-console": "^6.0.0"
   },
   "dependencies": {
-    "purescript-refs": "^5.0.0",
-    "purescript-ordered-collections": "^2.0.0"
+    "purescript-refs": "^6.0.0",
+    "purescript-ordered-collections": "^3.0.0"
   }
 }
