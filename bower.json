@@ -1,33 +1,24 @@
 {
-  "name": "purescript-simple-emitter",
-  "license": "MIT",
-  "homepage": "https://github.com/oreshinya/purescript-simple-emitter",
-  "authors": [
-    "Shinya Takahashi <s.takahashi313@gmail.com>"
-  ],
-  "description": "purescript simple event emitter",
-  "keywords": [
-    "purescript",
-    "event"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/oreshinya/purescript-simple-emitter"
-  },
-  "moduleType": [
-    "node"
-  ],
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "output"
-  ],
-  "devDependencies": {
-    "purescript-console": "^6.0.0"
-  },
-  "dependencies": {
-    "purescript-refs": "^6.0.0",
-    "purescript-ordered-collections": "^3.0.0"
-  }
+    "name": "purescript-simple-emitter",
+    "license": [
+        "MIT"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/oreshinya/purescript-simple-emitter"
+    },
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "output"
+    ],
+    "dependencies": {
+        "purescript-effect": "^v4.0.0",
+        "purescript-foldable-traversable": "^v6.0.0",
+        "purescript-maybe": "^v6.0.0",
+        "purescript-ordered-collections": "^v3.0.0",
+        "purescript-prelude": "^v6.0.1",
+        "purescript-refs": "^v6.0.0"
+    }
 }
